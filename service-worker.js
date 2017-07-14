@@ -12,25 +12,28 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var cacheName = 'weatherPWA-step-6-1';
+var cacheName = 'demo-pwa-1';
 var filesToCache = [
   '/',
   '/index.html',
-  '/scripts/app.js',
-  '/styles/inline.css',
-  '/images/clear.png',
-  '/images/cloudy-scattered-showers.png',
-  '/images/cloudy.png',
-  '/images/fog.png',
-  '/images/ic_add_white_24px.svg',
-  '/images/ic_refresh_white_24px.svg',
-  '/images/partly-cloudy.png',
-  '/images/rain.png',
-  '/images/scattered-showers.png',
-  '/images/sleet.png',
-  '/images/snow.png',
-  '/images/thunderstorm.png',
-  '/images/wind.png'
+  '/js/app.js',
+  '/js/bootstrap.min.js',
+  '/js/imagesloaded.min.js',
+  '/js/wow.min.js',
+  '/js/custom.js',
+  '/js/isotope.js',
+  '/js/jquery.js',
+  '/css/animate.min.css',
+  '/css/bootstrap.min.css',
+  '/css/font-awesome.min.css',
+  '/css/style.css',
+  '/images/header-bg.jpg',
+  '/images/portfolio-img3.jpg',
+  '/images/portfolio-img6.jpg',
+  '/images/portfolio-img5.jpg',
+  '/images/portfolio-img4.jpg',
+  '/images/portfolio-img2.jpg',
+  '/images/portfolio-img1.jpg'
 ];
 
 self.addEventListener('install', function(e) {
