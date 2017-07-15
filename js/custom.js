@@ -41,7 +41,7 @@ function loadGoogleMap(){
 }
 
 $(function(){
-  loadGoogleMap();
+  //loadGoogleMap();
 });
 
 

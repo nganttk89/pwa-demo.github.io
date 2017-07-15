@@ -13,46 +13,35 @@
 // limitations under the License.
 
 var cacheName = 'demo-pwa-1';
-var filesToCache = [
-  '/',
-  '/index.html',
-  '/js/app.js',
-  '/js/bootstrap.min.js',
-  '/js/imagesloaded.min.js',
-  '/js/wow.min.js',
-  '/js/custom.js',
-  '/js/isotope.js',
-  '/js/jquery.js',
-  '/css/animate.min.css',
-  '/css/bootstrap.min.css',
-  '/css/font-awesome.min.css',
-  '/css/style.css',
-  '/images/header-bg.jpg',
-  '/images/portfolio-img3.jpg',
-  '/images/portfolio-img6.jpg',
-  '/images/portfolio-img5.jpg',
-  '/images/portfolio-img4.jpg',
-  '/images/portfolio-img2.jpg',
-  '/images/portfolio-img1.jpg'
-];
+var filesToCaches = [];
+var validDomains = ["fonts.gstatic.com"];
+
+function checkValidCacheDomain(url){
+  var url = url.replace("https://","").replace("http://","");
+  if(url.indexOf(self.location.hostname) == 0)
+      return true;
+  for (var i in validDomains){
+    var domain = validDomains[i];
+    if (url.indexOf(domain) == 0){
+      return true;
+    }
+  }
+  return false;
+}
 
 self.addEventListener('install', function(e) {
-  console.log('[ServiceWorker] Install');
   e.waitUntil(
     caches.open(cacheName).then(function(cache) {
-      console.log('[ServiceWorker] Caching app shell');
-      return cache.addAll(filesToCache);
+      return cache.addAll(filesToCaches);
     })
   );
 });
 
 self.addEventListener('activate', function(e) {
-  console.log('[ServiceWorker] Activate');
   e.waitUntil(
     caches.keys().then(function(keyList) {
       return Promise.all(keyList.map(function(key) {
         if (key !== cacheName) {
-          console.log('[ServiceWorker] Removing old cache', key);
           return caches.delete(key);
         }
       }));
@@ -71,11 +60,31 @@ self.addEventListener('activate', function(e) {
   return self.clients.claim();
 });
 
+function getFetch(request){
+  return fetch(request).then(function(response) {
+    var isValidDomain = checkValidCacheDomain(request.url);
+    if(isValidDomain){
+      console.log('get from internet', request);
+      caches.open(cacheName).then(function (cache) {
+        cache.put(request, response);
+      });
+    }
+    return response.clone();
+  });
+}
+
 self.addEventListener('fetch', function(e) {
-  console.log('[ServiceWorker] Fetch', e.request.url);
   e.respondWith(
     caches.match(e.request).then(function(response) {
-      return response || fetch(e.request);
+      if(response) {
+        console.log('get from cache', e.request);
+        return response;
+      }
+      else{
+        return getFetch(e.request);
+      }
+    }).catch(function(){
+      getFetch(e.request);
     })
   );
 });
