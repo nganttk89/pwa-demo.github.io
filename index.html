@@ -55,7 +55,7 @@ http://www.tooplate.com/view/2082-pure-mix
 
         window.addEventListener('click', function() {
             console.log(deferredPrompt);
-            if(deferredPrompt !== undefined) {
+            if(deferredPrompt !== null) {
                 // The user has had a positive interaction with our app and Chrome
                 // has tried to prompt previously, so let's show the prompt.
                 deferredPrompt.prompt();
