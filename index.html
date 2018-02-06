@@ -69,10 +69,11 @@ http://www.tooplate.com/view/2082-pure-mix
                     }
                     else {
                         console.log('User added to home screen');
+                        deferredPrompt = null;
                     }
 
                     // We no longer need the prompt.  Clear it up.
-                    deferredPrompt = null;
+
                 });
             }
 
