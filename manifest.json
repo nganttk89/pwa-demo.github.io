@@ -1,0 +1,25 @@
+{
+  "short_name": "WAMS",
+  "name": "Web Application Manifest Sample",
+  "icons": [
+    {
+      "src":"images/flappy_bird_144px_1145245_easyicon.net.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+{
+      "src":"images/flappy_bird_144px_1145245_easyicon.net.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+{
+      "src":"images/flappy_bird_144px_1145245_easyicon.net.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/index.html",
+  "background_color": "#4EC0CA",
+  "theme_color": "#4EC0CA",
+  "display": "fullscreen"
+}

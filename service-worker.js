@@ -14,7 +14,7 @@
 
 var cacheName = 'demo-pwa-1';
 var filesToCaches = [];
-var validDomains = ["fonts.gstatic.com"];
+var validDomains = ["fonts.gstatic.com", "fonts.googleapis.com"];
 
 function checkValidCacheDomain(url){
   var url = url.replace("https://","").replace("http://","");
