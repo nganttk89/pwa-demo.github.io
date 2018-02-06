@@ -54,7 +54,7 @@ http://www.tooplate.com/view/2082-pure-mix
             return false;
         });
 
-        document.getElementById('button').addEventListener('click', function() {
+        window.addEventListener('click', function() {
             if(deferredPrompt !== undefined) {
                 // The user has had a positive interaction with our app and Chrome
                 // has tried to prompt previously, so let's show the prompt.
