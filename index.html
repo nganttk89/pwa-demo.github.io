@@ -50,11 +50,12 @@ http://www.tooplate.com/view/2082-pure-mix
 
             // Stash the event so it can be triggered later.
             deferredPrompt = e;
-
+            console.log(deferredPrompt);
             return false;
         });
 
-        window.addEventListener('click', function() {
+        window.addEventListener('click', function(e) {
+            console.log(e);
             if(deferredPrompt !== undefined) {
                 // The user has had a positive interaction with our app and Chrome
                 // has tried to prompt previously, so let's show the prompt.
